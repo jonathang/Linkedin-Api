@@ -24,6 +24,7 @@ passport.use(new LinkedInStrategy({
 
   function(token, tokenSecret, profile, done) {
      process.nextTick(function () {
+      
       // var googleToken = qs.parse(url.parse(identifier).query)['id'];
       users.findOrCreateUserByLinkedInProfile(googleToken, profile, function(err, user) {
         if (err) {
@@ -47,11 +48,11 @@ function logout(req, res) {
 }
 
 function login(req, res) {
-    res.render('login', {user: undefined, message: req.flash('error')});
+    res.render('login');
 }
 
 function ensureAuthenticated(req, res, next) {
-  var email = "test2@gilt.com",
+  var email = "test.com",
       useFakeUser = false;
   if (useFakeUser && process.env.ENV_VARIABLE === "development") {
     users.User.findOne({email: email}, function(err, user) {
