@@ -58,13 +58,13 @@ module.exports = function (grunt) {
         },
         prod: {
             options: {
-                script: 'path/to/prod/server.js',
+                script: 'app/server.js',
                 node_env: 'production'
             }
         },
         test: {
             options: {
-            script: 'path/to/test/server.js'
+            script: 'app/server.js'
          }
         }
     },
