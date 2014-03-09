@@ -1,7 +1,7 @@
 var port = process.env.PORT || 3333,
 	express = require('express'),	  	
-    app = express();
-
+    app = express(),
+    flash = require('connect-flash');
 
 app.get('/', function(req, res) {
     console.log("hello");
