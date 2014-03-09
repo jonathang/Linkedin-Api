@@ -7,36 +7,36 @@ var passport = require('passport'),
     users = require('./users');
 
 passport.serializeUser(function(user, done) {
-  done(null, user._id);
+  done(null, user);
 });
 
-passport.deserializeUser(function(id, done) {
-  users.User.findById(id, function(err, user) {
-    done(err, user);
-  });
+passport.deserializeUser(function(obj, done) {  
+    done(null, obj);
 });
 
 passport.use(new LinkedInStrategy({
     consumerKey: '***REMOVED***',        // Linkedin Application API Key
     consumerSecret: '***REMOVED***',   // Linkedin Application Secret Key
-    callbackURL: (process.env.URL || 'http://localhost:3333/') + 'auth/linkedin/return',
+    callbackURL: (process.env.URL || 'http://localhost:3333/') + 'auth/linkedin/callback',
   },
 
   function(token, tokenSecret, profile, done) {
      process.nextTick(function () {
       
-      // var googleToken = qs.parse(url.parse(identifier).query)['id'];
+     /* // var googleToken = qs.parse(url.parse(identifier).query)['id'];
       users.findOrCreateUserByLinkedInProfile(googleToken, profile, function(err, user) {
         if (err) {
           console.error("Unable to fetch the user", err)
           return done(null, false, { message: "Unable to login using your Linkedin account"})
-        }
-        return done(null, user);
+        }*/
+        console.log("profile:" + util.inspect(profile));
+        return done(null, profile);
       });
-    });
-  }));
+   }
+ ));
+      
 
-function auth(req, res) {
+function auth(req, res) {    
     var url = req.session.redirectUrl ? req.session.redirectUrl : '/';
     req.session.redirectUrl = null;
     res.redirect(url);

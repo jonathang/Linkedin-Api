@@ -1,14 +1,13 @@
-var auth = require("../lib/auth");
+var auth = require("../lib/auth"),
+	passport = require("passport"),
+	util = require("util");
 
 module.exports = function(app) {
-	app.get('/', function(req, res) {
-    	console.log("hello");
-    	res.send('');
-	});
-	
-	app.get('/hello', function(req, res){
-  		res.send('Hello World3');
+	app.get('/', auth.ensureAuthenticated, function(req, res) {
+    	res.render("home", {user: util.inspect(req.user)});
 	});
 
 	app.get('/login', auth.login);
+	app.get('/auth/linkedin', passport.authenticate('linkedin'), auth.auth);
+	app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/login' }), auth.auth);  	  
 }
