@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "dependencies": {
     "passport": "^0.2.0",
-    "express": "~3.5.0"
+    "express": "~3.5.0",
+    "connect-flash": "~0.1.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

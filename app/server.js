@@ -2,7 +2,8 @@
 var port = process.env.PORT || 3333,
 	express = require('express'),	  	
         app = express(),
-        auth = require("./lib/auth");
+        auth = require("./lib/auth"),
+        flash = require('connect-flash');
 
 app.get('/', function(req, res) {
     console.log("hello");
