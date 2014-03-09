@@ -1,7 +1,8 @@
+
 var port = process.env.PORT || 3333,
 	express = require('express'),	  	
-    app = express();
-
+        app = express(),
+        auth = require("./lib/auth");
 
 app.get('/', function(req, res) {
     console.log("hello");
@@ -10,10 +11,13 @@ app.get('/', function(req, res) {
 
 
 app.get('/hello', function(req, res){
-  res.send('Hello World2');
+  res.send('Hello World3');
 });
+
+app.get('/login', auth.login);
 
 //Initalizer
 app.listen(port, function() {
     console.log('Listening on port ' + port);
 });
+
