@@ -1,4 +1,4 @@
-// Generated on 2014-03-09 using generator-webapp 0.4.8
+    // Generated on 2014-03-09 using generator-webapp 0.4.8
 'use strict';
 
 // # Globbing
@@ -9,6 +9,8 @@
 
 module.exports = function (grunt) {
 
+    grunt.loadNpmTasks('grunt-express-server');
+    
     // Load grunt tasks automatically
     require('load-grunt-tasks')(grunt);
 
@@ -17,7 +19,55 @@ module.exports = function (grunt) {
 
     // Define the configuration for all the tasks
     grunt.initConfig({
+        
+        express: {
+            options: {
+                // Override the command used to start the server.
+              // (e.g. 'coffee' instead of the default 'node' to enable CoffeeScript support)
+              cmd: process.argv[0],
 
+              // Will turn into: `node path/to/server.js ARG1 ARG2 ... ARGN`
+              args: [ ],
+
+              // Setting to `false` will effectively just run `node path/to/server.js`
+              background: true,
+
+              // Called when the spawned server throws errors
+              fallback: function() {},
+
+              // Override node env's PORT
+              port: 3333,
+
+              // Override node env's NODE_ENV
+              node_env: undefined,
+
+              // Consider the server to be "running" after an explicit delay (in milliseconds)
+              // (e.g. when server has no initial output)
+              delay: 0,
+
+              // Regular expression that matches server output to indicate it is "running"
+              output: ".+",
+
+              // Set --debug
+              debug: false
+        },
+        dev: {
+            options: {
+            script: 'app/server.js'
+        }
+        },
+        prod: {
+            options: {
+                script: 'path/to/prod/server.js',
+                node_env: 'production'
+            }
+        },
+        test: {
+            options: {
+            script: 'path/to/test/server.js'
+         }
+        }
+    },
         // Project settings
         config: {
             // Configurable paths
@@ -32,10 +82,13 @@ module.exports = function (grunt) {
                 tasks: ['bowerInstall']
             },
             js: {
-                files: ['<%= config.app %>/scripts/{,*/}*.js'],
-                tasks: ['jshint'],
+                files: ['<%= config.app %>/scripts/{,*/}*.js',
+                        'app/*.js'
+                ],
+                
+                tasks: ['express:dev'],
                 options: {
-                    livereload: true
+                    spawn: false
                 }
             },
             jstest: {
@@ -316,7 +369,7 @@ module.exports = function (grunt) {
             'clean:server',
             'concurrent:server',
             'autoprefixer',
-            'connect:livereload',
+            'express:dev',
             'watch'
         ]);
     });

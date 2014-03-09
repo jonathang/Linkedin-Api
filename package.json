@@ -1,7 +1,10 @@
 {
   "name": "linkedin-hack",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "passport": "^0.2.0",
+    "express": "~3.5.0"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.4.1",
