@@ -5,6 +5,13 @@ var port = process.env.PORT || 3333,
         auth = require("./lib/auth"),
         flash = require('connect-flash');
 
+app.use(flash());
+app.use(express.session({
+    secret: "blah",
+    cookie: { maxAge: 3600000 },
+}));
+
+
 app.get('/', function(req, res) {
     console.log("hello");
     res.send('');
