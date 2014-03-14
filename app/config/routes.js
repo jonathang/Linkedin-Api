@@ -12,4 +12,5 @@ module.exports = function(app) {
 	app.get('/auth/linkedin', passport.authenticate('linkedin'), auth.auth);
 	app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/login' }), auth.auth);  	  
         app.get('/rules', rulemaker.rules);
+        app.post('/rules/rules_endpoint', rulemaker.rulesendpoint);
 }
