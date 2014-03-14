@@ -84,7 +84,8 @@ module.exports = function (grunt) {
             js: {
                 files: ['<%= config.app %>/*.js',
                         '<%= config.app %>/config/*.js',
-                        '<%= config.app %>/lib/*.js'
+                        '<%= config.app %>/lib/*.js',
+                        '<%= config.app %>/node_modules/linkedin-node/lib/{,*/}*.js'
                         ],            
                 tasks: ['express:dev'],
                 options: {
