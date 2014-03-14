@@ -22,7 +22,10 @@ passport.use(new LinkedInStrategy({
 
   function(token, tokenSecret, profile, done) {
      process.nextTick(function () {
-      
+      var user = {}
+      user.profile = profile;
+      user.token = token;
+      user.tokenSecret = tokenSecret        
      /* // var googleToken = qs.parse(url.parse(identifier).query)['id'];
       users.findOrCreateUserByLinkedInProfile(googleToken, profile, function(err, user) {
         if (err) {
@@ -30,7 +33,7 @@ passport.use(new LinkedInStrategy({
           return done(null, false, { message: "Unable to login using your Linkedin account"})
         }*/
         console.log("profile:" + util.inspect(profile));
-        return done(null, profile);
+        return done(null, user);
       });
    }
  ));
