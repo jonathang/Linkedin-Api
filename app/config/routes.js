@@ -4,7 +4,7 @@ var auth = require("../lib/auth"),
     rulemaker = require("../lib/rulemaker");
 
 module.exports = function(app) {
-	app.get('/', auth.ensureAuthenticated, rulemaker.getConnections)
+	app.get('/', auth.ensureAuthenticated, rulemaker.rules)
 	app.get('/login', auth.login);
 	app.get('/auth/linkedin', passport.authenticate('linkedin'), auth.auth);
 	app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/login' }), auth.auth);  	  
