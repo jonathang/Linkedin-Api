@@ -1,4 +1,4 @@
-var flash = require('connect-flash'), 
+var flash = require('connect-flash'),
   	  passport = require('passport'),
       express = require('express'),
       Lin = require('linkedin-node');
@@ -35,12 +35,12 @@ module.exports = function(app) {
   app.set('view engine', 'ejs');
   app.set('views', __dirname + '/../views');
 
-  
+
   var linConfig = {
-    "env":"production", 
+    "env":"production",
     "oauth": {
         "apiKey": "***REMOVED***",
-        "apiSecret": "***REMOVED***",    
+        "apiSecret": "***REMOVED***",
         "requestTokenCallback": "http://localhost:3000/accessToken",
         "apiServer": 'http://api.linkedin.com/v1/',
         "apiAuthority": "http://api.linkedin.com/v1/",
@@ -48,8 +48,8 @@ module.exports = function(app) {
         'directRequestUrl': 'https://www.linkedin.com/uas/oauth/direct',
       'tokenServer': 'https://api.linkedin.com'
     }
-  } 
+  }
 
   Lin.init(linConfig);
-  
+
 }

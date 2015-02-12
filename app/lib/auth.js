@@ -10,7 +10,7 @@ passport.serializeUser(function(user, done) {
   done(null, user);
 });
 
-passport.deserializeUser(function(obj, done) {  
+passport.deserializeUser(function(obj, done) {
     done(null, obj);
 });
 
@@ -25,7 +25,7 @@ passport.use(new LinkedInStrategy({
       var user = {}
       user.profile = profile;
       user.token = token;
-      user.tokenSecret = tokenSecret        
+      user.tokenSecret = tokenSecret
      /* // var googleToken = qs.parse(url.parse(identifier).query)['id'];
       users.findOrCreateUserByLinkedInProfile(googleToken, profile, function(err, user) {
         if (err) {
@@ -37,9 +37,9 @@ passport.use(new LinkedInStrategy({
       });
    }
  ));
-      
 
-function auth(req, res) {    
+
+function auth(req, res) {
     var url = req.session.redirectUrl ? req.session.redirectUrl : '/';
     req.session.redirectUrl = null;
     res.redirect(url);
